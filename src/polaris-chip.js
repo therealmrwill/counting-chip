@@ -104,6 +104,7 @@ export class PolarisChip extends LitElement {
         <span>${this.title}</span>
       </a>
   
+      
     
     `;
   }
@@ -117,7 +118,7 @@ export class PolarisChip extends LitElement {
     return {
       // this is a String. Array, Object, Number, Boolean are other valid values here
       title: { type: String },
-      link: {type: String},
+      link: { type: String},
     };
   }
 }
