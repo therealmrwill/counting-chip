@@ -16,6 +16,7 @@ export class CounterApp extends LitElement {
       value: { type: Number },
       min: {type: Number},
       max: {type: Number},
+      confetti: {type: Boolean},
     };
   }
 
@@ -135,8 +136,6 @@ export class CounterApp extends LitElement {
   
 
   makeItRain() {
-    if(this.value !== this.max) return;
-
     // this is called a dynamic import. It means it won't import the code for confetti until this method is called
     // the .then() syntax after is because dynamic imports return a Promise object. Meaning the then() code
     // will only run AFTER the code is imported and available to us
@@ -155,6 +154,8 @@ export class CounterApp extends LitElement {
       }
     );
   }
+
+
 
   render() {
     var plusButtonColor = (this.value == this.max) ? "grey" : "green";
@@ -187,7 +188,9 @@ export class CounterApp extends LitElement {
 
   updated(changedProperties) {
     if (changedProperties.has('value')) {
-      this.makeItRain();
+      if(this.confetti && this.value === this.max){
+        this.makeItRain();
+      }
     }
   }
 
